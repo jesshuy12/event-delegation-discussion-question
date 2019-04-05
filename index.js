@@ -3,6 +3,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   catContainer.innerHTML = renderCats()
 
+
+
+//When a user click son the header at the top, it should turn blue
+  const header = document.querySelector("h1#cat-header")
+
+  header.addEventListener("click", function(e) {
+	   e.target.className = "ui blue header center aligned"
+  })
+
+//When a user clicks on the name of any cat, it should turn green.
+const container = document.querySelector("#cat-container")
+const catName = document.querySelectorAll("div.ui.header")
+const up = document.querySelectorAll("i.thumbs.up.icon")
+
+container.addEventListener("click", function(e) {
+  if (e.target.dataset.action === "change-color") {
+    e.target.className = "ui header green"
+  } else if (e.target.dataset.action === "like") {
+    console.log(e.target.dataset.id)
+    const id = parseInt(e.target.dataset.id)
+    const number = container.querySelector(`#cat-${id}`)
+    let currentLikeCounter = parseInt(number.innerText)
+    currentLikeCounter += 1
+    number.innerText = currentLikeCounter
+  }
+
+})
+
+
+
+
 })
 
 function renderOneCat(cat) {
